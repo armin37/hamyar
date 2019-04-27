@@ -4,6 +4,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {LoginPage} from "../login/login";
 import {HttpClient} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
+import {SignupPage} from "../signup/signup";
 
 /**
  * Generated class for the VerificationCodePage page.
@@ -64,6 +65,10 @@ export class VerificationCodePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerificationCodePage');
+  }
+  checkCode()
+  {
+    this.navCtrl.push(SignupPage)
   }
 
 }
