@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {PersonalPage} from "../personal/personal";
 
 @Component({
   selector: 'page-home',
@@ -11,4 +12,8 @@ export class HomePage {
 
   }
 
+  public goToPersonal()
+  {
+    this.navCtrl.push(PersonalPage);
+  }
 }

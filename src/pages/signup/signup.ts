@@ -19,6 +19,7 @@ export class SignupPage {
   myForm: FormGroup;
   name: AbstractControl;
   bio: AbstractControl;
+  role: string = 'کاربر';
   warningMessage: boolean = false;
   messageText: string;
 
@@ -51,4 +52,9 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
+
+  segmentChanged(d) {
+    this.role = d;
+  }
+
 }

@@ -1,26 +1,41 @@
 <ion-content padding>
-    <form [formGroup]="myForm"
-          class="ui form absolute-center">
-      <ion-label class="margin-20">اطلاعات خود را وارد کنید</ion-label>
+  <form [formGroup]="myForm"
+        class="ui form absolute-center">
 
-      <div class="input-with-icon-right">
-        <ion-icon name="md-person"></ion-icon>
-        <ion-input class="form-control transparent-input"
-                   maxlength="11"
-                   placeholder="نام"
-                   [formControl]="myForm.controls['name']">
-        </ion-input>
+    <div class="avatar-wrapper">
+      <img src="/assets/imgs/user-icon.png">
+      <div class="camera-icon">
+        <ion-icon name="md-camera"></ion-icon>
       </div>
+    </div>
+    <div class="input-with-icon-right">
+      <ion-icon name="md-person"></ion-icon>
+      <ion-input class="form-control transparent-input"
+                 maxlength="11"
+                 placeholder="نام"
+                 [formControl]="myForm.controls['name']">
+      </ion-input>
+    </div>
 
-      <div class="input-with-icon-right">
-        <ion-icon name="ios-text"></ion-icon>
-        <ion-textarea [formControl]="myForm.controls['bio']"
-                      placeholder="بیو"
-                      class="form-control transparent-input">
-        </ion-textarea>
-      </div>
-      <button (click)="checkUserMobile()">
-        ثبت نام
-      </button>
-    </form>
+    <div class="input-with-icon-right">
+      <ion-icon name="ios-text"></ion-icon>
+      <ion-textarea [formControl]="myForm.controls['bio']"
+                    placeholder="بیو"
+                    class="form-control transparent-input">
+      </ion-textarea>
+    </div>
+
+    <ion-segment [ngModel]="role" [ngModelOptions]="{standalone:true}" mode="ios" color="primary">
+      <ion-segment-button (click)="segmentChanged('پزشک')" value="پزشک">
+        <ion-label>پزشک</ion-label>
+      </ion-segment-button>
+      <ion-segment-button  (click)="segmentChanged('کاربر')" value="کاربر">
+        <ion-label>کاربر</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <button (click)="checkUserMobile()">
+      ثبت نام
+    </button>
+  </form>
 </ion-content>

@@ -1,0 +1,49 @@
+page-personal {
+  .card-operations .button-inner>div
+  {
+    position: relative;
+    top: 1px;
+    right: 4px;
+  }
+  ion-card
+  {
+    box-shadow: none!important;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  ion-col
+  {
+    text-align: center;
+  }
+  ion-card, ion-card ion-item
+  {
+    background: #f5f5f5!important;
+  }
+  ion-card
+  {
+    width: 100%!important;
+    margin: 10px auto!important;
+  }
+  .personal-info
+  {
+    background: #fff!important;
+    margin-bottom: 50px!important;
+    padding-bottom: 20px!important;
+  }
+  .personal-info .item
+  {
+    background: #fff!important;
+  }
+  .avatar-wrapper img
+  {
+    width: 90px!important;
+    height: 90px!important;
+  }
+  .personal-info .input-wrapper
+  {
+    align-items: baseline;
+  }
+  //.tabbar show-tabbar
+  //{
+  //  top: 30px;
+  //}
+}

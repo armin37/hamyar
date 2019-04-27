@@ -15,6 +15,7 @@ import {SignupPage} from "../pages/signup/signup";
 import {VerificationCodePage} from "../pages/verification-code/verification-code";
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
+import {PersonalPage} from "../pages/personal/personal";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {IonicStorageModule} from "@ionic/storage";
     TabsPage,
     LoginPage,
     SignupPage,
-    VerificationCodePage
+    VerificationCodePage,
+    PersonalPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {IonicStorageModule} from "@ionic/storage";
     TabsPage,
     LoginPage,
     SignupPage,
-    VerificationCodePage
+    VerificationCodePage,
+    PersonalPage
   ],
   providers: [
     StatusBar,

@@ -70,5 +70,4 @@ export class VerificationCodePage {
   {
     this.navCtrl.push(SignupPage)
   }
-
 }
