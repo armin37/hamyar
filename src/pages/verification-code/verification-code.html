@@ -1,0 +1,32 @@
+<ion-content padding>
+  <img class="absolute-center" src="/assets/imgs/logo2.png" width="100">
+  <ion-item-group class="bottom-group">
+    <form [formGroup]="myForm"
+          class="ui form">
+      <ion-label>کد ارسالی را وارد کنید</ion-label>
+      <div class="input-with-icon-left">
+        <ion-icon name="ios-phone-portrait"></ion-icon>
+        <ion-input type="tel"
+                   class="form-control transparent-input"
+                   maxlength="11"
+                   disabled="true"
+                   placeholder="09**"
+                   [formControl]="myForm.controls['mobile']">
+        </ion-input>
+      </div>
+
+      <div class="input-with-icon-left">
+        <ion-icon name="ios-apps"></ion-icon>
+        <ion-input type="tel"
+                   class="form-control transparent-input"
+                   maxlength="5"
+                   placeholder="12345"
+                   [formControl]="myForm.controls['code']">
+        </ion-input>
+      </div>
+      <button (click)="checkCode()">
+        ورود
+      </button>
+    </form>
+  </ion-item-group>
+</ion-content>
