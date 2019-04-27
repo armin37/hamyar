@@ -1,16 +1,46 @@
-// http://ionicframework.com/docs/theming/
+@font-face {
+  font-family: 'iranYekan';
+  font-weight: 300;
+  font-style: normal;
+  src: url('../assets/fonts/iranyekanwebregular(fanum).woff2') format('woff2'),
+  url('../assets/fonts/iranyekanwebregular(fanum).woff') format('woff'),
+  url('../assets/fonts/iranyekanwebregular(fanum).ttf') format('truetype');
+}
 
-
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+* {
+  font-family: iranYekan;
+}
+.tab-button[aria-selected=true] .tab-button-icon,.tab-button[aria-selected=true]
+{
+  color: #ff5f5f!important;
+}
+.scroll-content
+{
+  z-index: 9999;
+}
+.fixed-header {
+  background-image: url('/assets/imgs/logo.jpg');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-position-y: 0vh;
+  background-size: 30vh 25vh;
+  height: 30vh;
+  width: 100%;
+  position: relative;
+}
+.body-with-fixed-header{
+  top: 30vh;
+  margin-top: 30vh;
+}
+.toolbar
+{
+  direction: ltr;
+}
+ion-header *
+{
+  background: transparent!important;
+}
+ion-header:after
+{
+  display: none;
+}

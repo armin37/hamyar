@@ -1,15 +1,21 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-
+  <img class="absolute-center" src="/assets/imgs/logo2.png" width="100">
+  <ion-item-group class="bottom-group">
+    <form [formGroup]="myForm"
+          class="ui form">
+      <ion-label>شماره خود را وارد کنید</ion-label>
+      <div class="input-with-icon-left">
+        <ion-icon name="ios-phone-portrait"></ion-icon>
+        <ion-input type="tel"
+                   class="form-control transparent-input"
+                   maxlength="11"
+                   placeholder="09**"
+                   [formControl]="myForm.controls['mobile']">
+        </ion-input>
+      </div>
+      <button (click)="checkUserMobile()">
+        ارسال کد
+      </button>
+    </form>
+  </ion-item-group>
 </ion-content>

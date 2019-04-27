@@ -1,3 +1,104 @@
 page-signup {
-
+  ion-content {
+    background: #4fa5ff;
+    background: linear-gradient(16deg, #228eff 0%, #985fff 50%, #f145fc 100%);
+  }
+  .bottom-group {
+    position: absolute;
+    bottom: 8%;
+    width: 100%;
+    padding: 10px 10%;
+    left: 0;
+  }
+  .white-input input {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  .white-input input[type=tel] {
+    letter-spacing: 4px;
+    padding-left: 40px;
+  }
+  .transparent-input input, .transparent-input textarea {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    //background-color: rgba(255,255,255,0.1);
+    padding: 5px 33px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid #b7c5f9;
+    direction: rtl;
+    text-align: right;
+  }
+  ion-label {
+    text-align: center;
+    color: #fff;
+    margin: 10px 0 !important;
+  }
+  .absolute-center {
+    position: absolute;
+    top: 50%;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .input-with-icon-left {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    ion-icon {
+      position: absolute;
+      left: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 99;
+      font-size: 1.4em;
+      color: #b7c5f9;
+    }
+  }
+  .input-with-icon-right {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+    ion-icon {
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      font-size: 1.4em;
+      color: #b7c5f9;
+    }
+  }
+  button {
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    padding: 13px;
+    border-radius: 20px;
+    background-color: #b7c5f9;
+    color: #3c64f9;
+  }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #c1cff9 !important;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #c1cff9 !important;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #c1cff9 !important;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #c1cff9 !important;
+  }
+  @media screen and (max-height: 500px) {
+    img.absolute-center {
+      top: 30%;
+    }
+  }
+  .margin-20
+  {
+    margin-bottom: 20px!important;
+  }
 }
