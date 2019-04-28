@@ -5,6 +5,8 @@ import {LoginPage} from "../login/login";
 import {HttpClient} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
 import {SignupPage} from "../signup/signup";
+import {HttpApiProvider} from "../../providers/http-api/http-api";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the VerificationCodePage page.
@@ -30,8 +32,11 @@ export class VerificationCodePage {
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
     , private storage: Storage
+    , public httpApi: HttpApiProvider
     , public loadingCtrl: LoadingController
   ) {
+    this.mobile=navParams.get('phoneNumber');
+    // console.log(navParams.get('phoneNumber'))
     this.myForm = formBuilder.group({
       'mobile': [this.mobile, Validators.compose([
         Validators.required,
@@ -48,6 +53,7 @@ export class VerificationCodePage {
     });
     this.mobile = this.myForm.controls['mobile'];
     this.code = this.myForm.controls['code'];
+
     // this.storage.ready().then(() => {
     //   this.storage.get('mobile').then((val) => {
     //     if (val) {
@@ -66,8 +72,21 @@ export class VerificationCodePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerificationCodePage');
   }
-  checkCode()
+  checkCode=async()=>
   {
-    this.navCtrl.push(SignupPage)
+    const phoneNumber: String = this.myForm.value.mobile;
+    const vercode: String = this.myForm.value.code;
+    let res:any=await this.httpApi.sendPostRequest("/verify",{
+      phoneNumber,
+      vercode
+    })
+    if(res){
+      await this.storage.set('user',res)
+      if(res.role){
+        this.navCtrl.push(TabsPage)
+      }else{
+        this.navCtrl.push(SignupPage)
+      }
+    }
   }
 }

@@ -16,6 +16,7 @@ import {VerificationCodePage} from "../pages/verification-code/verification-code
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {PersonalPage} from "../pages/personal/personal";
+import { HttpApiProvider } from '../providers/http-api/http-api';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {PersonalPage} from "../pages/personal/personal";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: 'ApiBaseUrl', useValue: "http://velgardi-game.ir:3031/api"}
+    {provide: 'ApiBaseUrl', useValue: "http://5.152.223.102:3010"},
+    HttpApiProvider
   ]
 })
 export class AppModule {

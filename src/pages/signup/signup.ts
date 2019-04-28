@@ -3,6 +3,9 @@ import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angu
 import {IonicStorageModule, Storage} from "@ionic/storage";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {VerificationCodePage} from "../verification-code/verification-code";
+import {HttpApiProvider} from "../../providers/http-api/http-api";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the SignupPage page.
@@ -29,6 +32,7 @@ export class SignupPage {
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
     , private storage: Storage
+    , public httpApi: HttpApiProvider
     , public loadingCtrl: LoadingController) {
     this.myForm = formBuilder.group({
       'name': ['', Validators.compose([
@@ -57,4 +61,25 @@ export class SignupPage {
     this.role = d;
   }
 
+  registerUser=async()=>{
+    const name: String = this.myForm.value.name;
+    const bio: String = this.myForm.value.bio;
+    const role:String=this.role==="کاربر"?"MEMBER":"DOCTOR";
+    const user:any=await this.storage.get('user')
+
+    // this.navCtrl.push(VerificationCodePage);
+    // loading.dismiss();
+    // if (phoneNumber != null && phoneNumber.length === 11) {
+      let res=await this.httpApi.sendPostRequest("/signup",{
+        phoneNumber:user.phoneNumber,
+        name,
+        role,
+        bio
+      })
+      if(res){
+      await this.storage.set('user',res)
+        this.navCtrl.push(TabsPage);
+      }
+    // }
+  }
 }
