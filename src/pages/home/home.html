@@ -1,22 +1,25 @@
 <ion-content padding>
-  <ion-card>
-    <ion-item (click)="goToPersonal()">
+  <ion-card *ngFor="let post of posts">
+
+    <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
       <ion-avatar item-start>
-        <img src="/assets/imgs/user-icon.png">
+        <img src="{{post.userId.image}}">
       </ion-avatar>
-      <h2>Marty McFly</h2>
-      <p>November 5, 1955</p>
+      <h2>{{post.userId.name}}</h2>
+      <p>{{post.pdate}}</p>
+      <span *ngIf="post.from">
+      <h2 (click)="goToPersonal(post.from.phoneNumber)" >ارسال شده از :{{post.from.name}}</h2>
+      </span>
     </ion-item>
-    <img src="/assets/imgs/15.jpg">
+    <img src="{{post.file}}">
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
-        DeLorean?! Whoa. This is heavy.</p>
+      <p>{{post.content}}</p>
     </ion-card-content>
     <ion-row>
       <ion-col>
         <button class="card-operations" ion-button icon-start clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>12</div>
+          <div>{{post.liked.length}}</div>
         </button>
       </ion-col>
       <ion-col>
@@ -29,40 +32,6 @@
         <button ion-button icon-start clear small>
           <ion-icon name="share-alt"></ion-icon>
           <div>9</div>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <ion-card>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="/assets/imgs/user-icon.png">
-      </ion-avatar>
-      <h2>Marty McFly</h2>
-      <p>November 5, 1955</p>
-    </ion-item>
-    <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
-        DeLorean?! Whoa. This is heavy.</p>
-    </ion-card-content>
-    <ion-row>
-      <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>12</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4</div>
-        </button>
-      </ion-col>
-      <ion-col class="card-operations" align-self-center text-center>
-        <button ion-button icon-start clear small>
-          <ion-icon name="share-alt"></ion-icon>
-          <div>14</div>
         </button>
       </ion-col>
     </ion-row>
