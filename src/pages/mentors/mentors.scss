@@ -3,4 +3,18 @@ page-mentors {
     border: 2px solid #ddd;
     border-radius: 50%;
   }
+  .messages
+  {
+    .item{
+      background: #ddd;
+    }
+  }
+  .list-labels
+  {
+    margin-top: 20px;
+    color: #4fa5ff;
+    font-size: 1.7rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
 }
