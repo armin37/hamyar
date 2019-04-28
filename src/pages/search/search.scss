@@ -1,3 +1,14 @@
 page-search {
-
+  .searchbar-input
+  {
+    direction: rtl;
+    box-shadow: none!important;
+    border: 1px solid #ddd!important;
+    border-radius: 4px!important;
+  }
+  .searchbar-search-icon
+  {
+    left: auto!important;
+    right: 16px;
+  }
 }

@@ -1,3 +1,77 @@
 page-user-info {
+  ion-card
+  {
+    box-shadow: none!important;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  ion-col
+  {
+    text-align: center;
+  }
+  ion-card, ion-card ion-item
+  {
+    background: #f5f5f5!important;
+  }
+  ion-card
+  {
+    width: 100%!important;
+    margin: 10px auto!important;
+  }
+  .personal-info
+  {
+    background: #fff!important;
+    margin-bottom: 50px!important;
+    padding-bottom: 20px!important;
+  }
+  .personal-info>div
+  {
+    float: right;
+  }
+  .personal-info .infos
+  {
+    margin-right: 20px;
+  }
 
+  .avatar-wrapper img
+  {
+    width: 90px!important;
+    height: 90px!important;
+  }
+  .personal-info .input-wrapper
+  {
+    align-items: baseline;
+  }
+  .personal-info .toggle-wrapper
+  {
+    width: 230px!important;
+    .item-inner{
+      border-bottom: none!important;
+    }
+  }
+  .card-operations .button-inner > div {
+    position: relative;
+    top: 1px;
+    right: 4px;
+  }
+  ion-card {
+    box-shadow: none !important;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  ion-col {
+    text-align: center;
+  }
+  ion-card, ion-card ion-item {
+    background: #f5f5f5 !important;
+  }
+  ion-card {
+    width: 100% !important;
+    margin: 10px auto !important;
+  }
+  .posts
+  {
+    clear: both;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+    padding-top: 30px;
+  }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {PersonalPage} from "../personal/personal";
+import {HttpApiProvider} from "../../providers/http-api/http-api";
 
 /**
  * Generated class for the SearchPage page.
@@ -13,12 +15,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'search.html',
 })
 export class SearchPage {
+  posts: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public httpApi: HttpApiProvider,
+              public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    this.getPostList();
+  }
+  private goToPersonal(phoneNumber) {
+    this.navCtrl.push(PersonalPage, {
+      phoneNumber
+    });
   }
 
+  getPostList = async () => {
+    let res: any = await this.httpApi.sendPostRequest("/post/list")
+    if (Array.isArray(res)) {
+      this.posts = res;
+    }
+  }
 }

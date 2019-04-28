@@ -21,6 +21,7 @@ import {SearchPage} from "../pages/search/search";
 import {UserInfoPage} from "../pages/user-info/user-info";
 import {ChatPage} from "../pages/chat/chat";
 import {NewPostPage} from "../pages/new-post/new-post";
+import {MentorsPage} from "../pages/mentors/mentors";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {NewPostPage} from "../pages/new-post/new-post";
     SearchPage,
     UserInfoPage,
     ChatPage,
-    NewPostPage
+    NewPostPage,
+    MentorsPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import {NewPostPage} from "../pages/new-post/new-post";
     SearchPage,
     UserInfoPage,
     ChatPage,
-    NewPostPage
+    NewPostPage,
+    MentorsPage
   ],
   providers: [
     StatusBar,

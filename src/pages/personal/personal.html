@@ -3,22 +3,19 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-card *ngIf="user" class="personal-info">
+  <div *ngIf="user" class="infos">
     <ion-item>
       <ion-avatar item-start>
         <div class="avatar-wrapper">
           <img src="{{user.image}}">
-          <div class="camera-icon">
-            <ion-icon name="md-camera"></ion-icon>
-          </div>
         </div>
       </ion-avatar>
       <h2>{{user.name}}</h2>
       <p>{{user.bio}}</p>
     </ion-item>
-  </ion-card>
-  <ion-card *ngFor="let post of posts">
+  </div>
 
+  <ion-card *ngFor="let post of posts">
     <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
       <ion-avatar item-start>
         <img src="{{post.userId.image}}">
