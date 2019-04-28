@@ -12,7 +12,7 @@ import {NewPostPage} from "../new-post/new-post";
 })
 export class HomePage {
   posts: any = [];
-
+  user:any;
   constructor(
     public navCtrl: NavController
     , private storage: Storage
@@ -33,6 +33,7 @@ export class HomePage {
   }
 
   getPostList = async () => {
+    this.user=await this.storage.get("user");
     let res: any = await this.httpApi.sendPostRequest("/post/list")
     if (Array.isArray(res)) {
       this.posts = res;
@@ -42,5 +43,36 @@ export class HomePage {
   private addNewPost() {
     const modal = this.modalCtrl.create(NewPostPage);
     modal.present();
+  }
+
+  like=async(postId,index)=> {
+    const userId:any=this.user._id;
+    let res:any=await this.httpApi.sendPostRequest("/post/like",{
+      userId,
+      postId
+    })
+    if(res) {
+      this.posts[index].liked.push(userId)
+    }
+  }
+  unlike=async(postId,index)=> {
+    const userId:any=this.user._id;
+    let res:any=await this.httpApi.sendPostRequest("/post/unlike",{
+      userId,
+      postId
+    })
+    if(res) {
+      let uindex=this.posts[index].liked.indexOf(userId);
+      this.posts[index].liked.splice(uindex,1)
+    }
+  }
+
+  repost=async(post)=>{
+    const userId:any=this.user._id;
+    const postId:any=post._id;
+    await this.httpApi.sendPostRequest("/post/repost",{
+      userId,
+      postId
+    })
   }
 }

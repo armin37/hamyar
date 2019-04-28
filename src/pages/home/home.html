@@ -3,7 +3,7 @@
 </button>
 
 <ion-content padding>
-  <ion-card *ngFor="let post of posts">
+  <ion-card *ngFor="let post of posts;let pindex = index" >
     <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
       <ion-avatar item-start>
         <img src="{{post.userId.image}}">
@@ -20,8 +20,12 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
+        <button *ngIf="post.liked.indexOf(user._id)===-1" (click)="like(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart-outline"></ion-icon>
+          <div>{{post.liked.length}}</div>
+        </button>
+        <button *ngIf="post.liked.indexOf(user._id)!==-1" (click)="unlike(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart"></ion-icon>
           <div>{{post.liked.length}}</div>
         </button>
       </ion-col>
@@ -32,7 +36,7 @@
         </button>
       </ion-col>
       <ion-col class="card-operations" align-self-center text-center>
-        <button ion-button icon-start clear small>
+        <button (click)="repost(post)" ion-button icon-start clear small>
           <ion-icon name="share-alt"></ion-icon>
           <div>9</div>
         </button>

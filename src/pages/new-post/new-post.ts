@@ -42,5 +42,8 @@ export class NewPostPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewPostPage');
   }
+  close(){
+    this.navCtrl.pop();
+  }
 
 }
