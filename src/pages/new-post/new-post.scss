@@ -1,0 +1,29 @@
+page-new-post {
+  .input-with-border-bottom
+  {
+    background: #eee;
+    border-radius: 4px;
+    border-bottom: 2px solid #4fa5ff!important;
+  }
+  ion-col {
+    text-align: center;
+  }
+  .share-post-btn
+  {
+    float: left;
+    background: #4fa5ff!important;
+    .button-inner
+    {
+      flex-direction: row-reverse;
+    }
+    ion-icon{
+      padding-left: 0!important;
+      padding-right: 0.6em!important;
+    }
+  }
+
+  .share-post-btn *
+  {
+    color: #fff!important;
+  }
+}

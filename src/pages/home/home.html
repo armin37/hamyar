@@ -1,6 +1,9 @@
+<button (click)="addNewPost()" class="new-post" ion-button outline item-end icon-start>
+  <ion-icon name="add"></ion-icon>
+</button>
+
 <ion-content padding>
   <ion-card *ngFor="let post of posts">
-
     <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
       <ion-avatar item-start>
         <img src="{{post.userId.image}}">

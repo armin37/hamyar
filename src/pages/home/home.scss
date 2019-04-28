@@ -1,26 +1,36 @@
 page-home {
-  .card-operations .button-inner>div
-  {
+  .card-operations .button-inner > div {
     position: relative;
     top: 1px;
     right: 4px;
   }
-  ion-card
-  {
-    box-shadow: none!important;
+  ion-card {
+    box-shadow: none !important;
     border-bottom: 1px solid #e5e5e5;
   }
-  ion-col
-  {
+  ion-col {
     text-align: center;
   }
-  ion-card, ion-card ion-item
-  {
-    background: #f5f5f5!important;
+  ion-card, ion-card ion-item {
+    background: #f5f5f5 !important;
   }
-  ion-card
-  {
-    width: 100%!important;
-    margin: 10px auto!important;
+  ion-card {
+    width: 100% !important;
+    margin: 10px auto !important;
+  }
+  .new-post {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 999999 !important;
+    background: #ea59ff !important;
+    border: none !important;
+    ion-icon {
+      padding: 0 !important;
+      color: #fff !important;
+    }
   }
 }

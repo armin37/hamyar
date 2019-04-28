@@ -17,6 +17,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {PersonalPage} from "../pages/personal/personal";
 import { HttpApiProvider } from '../providers/http-api/http-api';
+import {SearchPage} from "../pages/search/search";
+import {UserInfoPage} from "../pages/user-info/user-info";
+import {ChatPage} from "../pages/chat/chat";
+import {NewPostPage} from "../pages/new-post/new-post";
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { HttpApiProvider } from '../providers/http-api/http-api';
     LoginPage,
     SignupPage,
     VerificationCodePage,
-    PersonalPage
+    PersonalPage,
+    SearchPage,
+    UserInfoPage,
+    ChatPage,
+    NewPostPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,11 @@ import { HttpApiProvider } from '../providers/http-api/http-api';
     LoginPage,
     SignupPage,
     VerificationCodePage,
-    PersonalPage
+    PersonalPage,
+    SearchPage,
+    UserInfoPage,
+    ChatPage,
+    NewPostPage
   ],
   providers: [
     StatusBar,
