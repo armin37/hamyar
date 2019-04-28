@@ -3,6 +3,7 @@ import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angu
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Storage} from "@ionic/storage";
+import {HttpApiProvider} from "../../providers/http-api/http-api";
 
 /**
  * Generated class for the NewPostPage page.
@@ -23,11 +24,11 @@ export class NewPostPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              formBuilder: FormBuilder,
-              @Inject('ApiBaseUrl') private apiBaseUrl: string,
-              private http: HttpClient,
-              private storage: Storage,
-              public loadingCtrl: LoadingController) {
+              formBuilder: FormBuilder
+    , public httpApi: HttpApiProvider
+    , @Inject('ApiBaseUrl') private apiBaseUrl: string
+    , private http: HttpClient
+    , private storage: Storage) {
     this.myForm = formBuilder.group({
       'text': ['', Validators.compose([
         Validators.required,
@@ -46,4 +47,16 @@ export class NewPostPage {
     this.navCtrl.pop();
   }
 
+  newPost=async()=> {
+
+    let user:any=await this.storage.get("user");
+    let content:any=this.myForm.value.text;
+    let res=await this.httpApi.sendPostRequest("/post/create",{
+      content,
+      userId:user._id
+    })
+    if(res){
+      this.navCtrl.pop();
+    }
+  }
 }

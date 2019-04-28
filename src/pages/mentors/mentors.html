@@ -26,34 +26,14 @@
     حامی می خواهند
   </ion-label>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let mentor of mentored;let mindex = index">
       <ion-avatar class="avatar-list" item-start>
         <div>
-          <img src="/assets/imgs/user-icon.png">
+          <img src="{{mentor.image}}">
         </div>
       </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar class="avatar-list" item-start>
-        <div>
-          <img src="/assets/imgs/user-icon.png">
-        </div>
-      </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar class="avatar-list" item-start>
-        <div>
-          <img src="/assets/imgs/user-icon.png">
-        </div>
-      </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
+      <h2>{{mentor.name}}</h2>
+      <p>{{mentor.bio}}</p>
     </ion-item>
   </ion-list>
 
@@ -61,34 +41,14 @@
     لیست حامیان
   </ion-label>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let mentor of mentoring;let mindex = index" (click)="goToPersonal(mentor.phoneNumber)">
       <ion-avatar class="avatar-list" item-start>
         <div>
-          <img src="/assets/imgs/user-icon.png">
+          <img src="{{mentor.image}}">
         </div>
       </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar class="avatar-list" item-start>
-        <div>
-          <img src="/assets/imgs/user-icon.png">
-        </div>
-      </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar class="avatar-list" item-start>
-        <div>
-          <img src="/assets/imgs/user-icon.png">
-        </div>
-      </ion-avatar>
-      <h2>رسول نقدی</h2>
-      <p>خدا حواسش به همه هست. ما هم یکیش</p>
+      <h2>{{mentor.name}}</h2>
+      <p>{{mentor.bio}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

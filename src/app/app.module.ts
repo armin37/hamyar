@@ -22,6 +22,7 @@ import {UserInfoPage} from "../pages/user-info/user-info";
 import {ChatPage} from "../pages/chat/chat";
 import {NewPostPage} from "../pages/new-post/new-post";
 import {MentorsPage} from "../pages/mentors/mentors";
+import {SafePipe} from "../pipes/safe/safe";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MentorsPage} from "../pages/mentors/mentors";
     UserInfoPage,
     ChatPage,
     NewPostPage,
-    MentorsPage
+    MentorsPage,
+    SafePipe
   ],
   imports: [
     BrowserModule,

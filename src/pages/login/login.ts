@@ -26,10 +26,10 @@ export class LoginPage {
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , public httpApi: HttpApiProvider
+    , private storage: Storage
     , formBuilder: FormBuilder
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
-    , private storage: Storage
     , public loadingCtrl: LoadingController) {
     this.myForm = formBuilder.group({
       'mobile': ['', Validators.compose([

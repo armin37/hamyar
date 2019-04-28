@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HttpApiProvider} from "../../providers/http-api/http-api";
+import {Storage} from "@ionic/storage";
+import {ChatPage} from "../chat/chat";
 
 /**
  * Generated class for the PersonalPage page.
@@ -15,27 +17,50 @@ import {HttpApiProvider} from "../../providers/http-api/http-api";
 })
 export class PersonalPage {
   private phoneNumber: any;
-  private user: any={};
-  private posts: any=[];
-  constructor(
-    public navCtrl: NavController,
-   public httpApi: HttpApiProvider,
-  public navParams: NavParams) {
-    this.phoneNumber=navParams.get('phoneNumber');
+  private user: any = {};
+  private posts: any = [];
+  private suser: any = {};
+
+  constructor(private storage: Storage,
+              public navCtrl: NavController,
+              public httpApi: HttpApiProvider,
+              public navParams: NavParams) {
+    this.phoneNumber = navParams.get('phoneNumber');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PersonalPage');
     this.getUserProfile();
   }
-  getUserProfile=async()=> {
-    let res:any=await this.httpApi.sendPostRequest("/profile",{
-      phoneNumber:this.phoneNumber
+
+  getUserProfile = async () => {
+    this.suser = await this.storage.get('user')
+
+    let res: any = await this.httpApi.sendPostRequest("/profile", {
+      phoneNumber: this.phoneNumber
     })
-    if(Array.isArray(res)){
-      this.user=res[0];
-      this.posts=res[1];
+    if (Array.isArray(res)) {
+      this.user = res[0];
+      this.posts = res[1];
     }
   }
+  mentored: any = false;
+  mentoring: any = false;
 
+  goToChat(name) {
+    this.navCtrl.push(ChatPage, {name})
+  }
+
+  changeMentoredStatus = async () => {
+  }
+
+  changeMentoringStatus() {
+
+  }
+
+  setMentorship=async(type, requested, requester)=>{
+    let res: any = await this.httpApi.sendPostRequest("/mentorship/set", {
+      type, requester, requested
+    })
+  }
 }

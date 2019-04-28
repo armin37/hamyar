@@ -1,9 +1,9 @@
 <ion-content padding>
-  <div class="personal-info">
+  <div *ngIf="user" class="personal-info">
     <div class="avatar">
       <ion-avatar item-start>
         <div class="avatar-wrapper">
-          <img src="/assets/imgs/user-icon.png">
+          <img src="{{user.image}}">
           <div class="camera-icon">
             <ion-icon name="md-camera"></ion-icon>
           </div>
@@ -12,58 +12,61 @@
     </div>
 
     <div class="infos">
-      <h2>آرمین مومنی</h2>
-      <p>شخسهخهت شسخهتخت </p>
-
+      <h2>{{user.name}}</h2>
+      <p>{{user.bio}}</p>
       <ion-item class="toggle-wrapper">
         <ion-label>حامی می شوم</ion-label>
-        <ion-toggle checked="false"></ion-toggle>
+        <ion-toggle (ionChange)="changeMentoredStatus($event)" [(ngModel)]="mentoring"></ion-toggle>
       </ion-item>
-
       <ion-item class="toggle-wrapper">
         <ion-label>حامی می خواهم</ion-label>
-        <ion-toggle checked="false"></ion-toggle>
+        <ion-toggle (ionChange)="changeMentoringStatus($event)" [(ngModel)]="mentored"></ion-toggle>
       </ion-item>
     </div>
+    <ion-item >
+      <button ion-button (click)="goToChat(user.name)">گفتوگوها</button>
+    </ion-item>
   </div>
 
-  <ion-item-group class="posts">
-    <ion-card>
-      <ion-item (click)="goToPersonal(post.userId.phoneNumber)">
-        <ion-avatar item-start>
-          <img src="/assets/imgs/user-icon.png">
-        </ion-avatar>
-        <h2>علی محمودوند</h2>
-        <p>12 اردیبهشت</p>
-        <span>
-        <h2 (click)="goToPersonal(post.from.phoneNumber)">ارسال شده از : آرمین مومنی</h2>
+  <ion-card *ngFor="let post of posts;let pindex = index" >
+    <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
+      <ion-avatar item-start>
+        <img src="{{post.userId.image}}">
+      </ion-avatar>
+      <h2>{{post.userId.name}}</h2>
+      <p>{{post.pdate}}</p>
+      <span *ngIf="post.from">
+      <h2 (click)="goToPersonal(post.from.phoneNumber)" >ارسال شده از :{{post.from.name}}</h2>
       </span>
-      </ion-item>
-      <img src="/assets/imgs/15.jpg">
-      <ion-card-content>
-        <p> شسنتنتظطد ظتنطد ن تشسد زد هدب ههش هخیتخهتخهطتر هعزذا هزعا رهطعار طهعزا </p>
-      </ion-card-content>
-      <ion-row>
-        <ion-col>
-          <button class="card-operations" ion-button icon-start clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>10</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button class="card-operations" ion-button icon-start clear small>
-            <ion-icon name="text"></ion-icon>
-            <div>4</div>
-          </button>
-        </ion-col>
-        <ion-col class="card-operations" align-self-center text-center>
-          <button ion-button icon-start clear small>
-            <ion-icon name="share-alt"></ion-icon>
-            <div>9</div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
-  </ion-item-group>
+    </ion-item>
+    <img src="{{post.file}}">
+    <ion-card-content>
+      <p>{{post.content}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button *ngIf="post.liked.indexOf(user._id)===-1" (click)="like(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart-outline"></ion-icon>
+          <div>{{post.liked.length}}</div>
+        </button>
+        <button *ngIf="post.liked.indexOf(user._id)!==-1" (click)="unlike(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart"></ion-icon>
+          <div>{{post.liked.length}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4</div>
+        </button>
+      </ion-col>
+      <ion-col class="card-operations" align-self-center text-center>
+        <button (click)="repost(post)" ion-button icon-start clear small>
+          <ion-icon name="share-alt"></ion-icon>
+          <div>9</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
 </ion-content>
