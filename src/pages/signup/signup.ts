@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {VerificationCodePage} from "../verification-code/verification-code";
 import {HttpApiProvider} from "../../providers/http-api/http-api";
 import {TabsPage} from "../tabs/tabs";
-// import {Camera,CameraOptions} from "@ionic-native/camera";
+import {Camera,CameraOptions} from "@ionic-native/camera";
 
 /**
  * Generated class for the SignupPage page.
@@ -30,8 +30,7 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
-    // , private camera: Camera
-
+    , private camera: Camera
     , formBuilder: FormBuilder
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
@@ -89,21 +88,21 @@ export class SignupPage {
     }
     // }
   }
-  // takePhoto(sourceType:number) {
-  //   const options: CameraOptions = {
-  //     quality: 50,
-  //     destinationType: this.camera.DestinationType.DATA_URL,
-  //     encodingType: this.camera.EncodingType.JPEG,
-  //     mediaType: this.camera.MediaType.PICTURE,
-  //     correctOrientation: true,
-  //     sourceType:sourceType,
-  //   }
-  //
-  //   this.camera.getPicture(options).then((imageData) => {
-  //     // this.imageSrc = 'data:image/jpeg;base64,' + imageData;
-  //     this.base64Image = /*'data:image/jpeg;base64,' +*/ imageData;
-  //   }, (err) => {
-  //     // Handle error
-  //   });
-  // }
+  takePhoto(sourceType:number) {
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      sourceType:sourceType,
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // this.imageSrc = 'data:image/jpeg;base64,' + imageData;
+      this.base64Image = /*'data:image/jpeg;base64,' +*/ imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
 }

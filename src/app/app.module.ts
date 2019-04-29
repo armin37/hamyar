@@ -1,3 +1,4 @@
+import {SafePipe} from "../pipes/safe/safe";
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
@@ -22,12 +23,12 @@ import {UserInfoPage} from "../pages/user-info/user-info";
 import {ChatPage} from "../pages/chat/chat";
 import {NewPostPage} from "../pages/new-post/new-post";
 import {MentorsPage} from "../pages/mentors/mentors";
-import {SafePipe} from "../pipes/safe/safe";
 import {ChallengePage} from "../pages/challenge/challenge";
-// import {Camera,CameraOptions} from "@ionic-native/camera";
+import {Camera,CameraOptions} from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
+    SafePipe,
     MyApp,
     AboutPage,
     ContactPage,
@@ -42,7 +43,6 @@ import {ChallengePage} from "../pages/challenge/challenge";
     ChatPage,
     NewPostPage,
     MentorsPage,
-    SafePipe,
     ChallengePage
   ],
   imports: [
@@ -72,7 +72,7 @@ import {ChallengePage} from "../pages/challenge/challenge";
   providers: [
     StatusBar,
     SplashScreen,
-    // Camera,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: 'ApiBaseUrl', useValue: "http://5.152.223.102:3010"},
     HttpApiProvider

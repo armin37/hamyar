@@ -15,12 +15,10 @@ export class HomePage {
   user: any;
   nextLink: any = "/post/list/0";
 
-  constructor(
-    public navCtrl: NavController
+  constructor(public navCtrl: NavController
     , private storage: Storage
     , public httpApi: HttpApiProvider
-    , public modalCtrl: ModalController
-  ) {
+    , public modalCtrl: ModalController) {
 
   }
 
@@ -85,5 +83,9 @@ export class HomePage {
       this.getPostList();
       infiniteScroll.complete();
     }, 500);
+  }
+
+  sharePost(post) {
+
   }
 }
