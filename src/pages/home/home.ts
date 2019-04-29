@@ -41,7 +41,6 @@ export class HomePage {
     let res: any = await this.httpApi.sendPostRequest(this.nextLink);
     if (Array.isArray(res.post)) {
       this.posts = res.post;
-      this.nextLink = res.nexLink;
     }
   }
 
@@ -79,5 +78,12 @@ export class HomePage {
       userId,
       postId
     })
+  }
+
+  doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      this.getPostList();
+      infiniteScroll.complete();
+    }, 500);
   }
 }

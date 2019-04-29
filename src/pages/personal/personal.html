@@ -14,12 +14,13 @@
       <p>{{user.bio}}</p>
 
       <button *ngIf="user._id!==suser._id" (click)="setMentorship('FRIENDSHIP',user._id,suser._id)" ion-button>دنبال کردن</button>
-      <button  *ngIf="user._id!==suser._id" (click)="setMentorship('MENTORSHIP',user._id,suser._id)" ion-button>حامی شو</button>
+      <button  *ngIf="user._id!==suser._id" (click)="setMentorship('MENTORSHIP',user._id,suser._id)" ion-button>حامی من شو</button>
       <button   *ngIf="user._id!==suser._id" (click)="setMentorship('MENTORSHIP',suser._id,user._id)" ion-button>حامیت میشم</button>
+      <div *ngIf="suser._id!==user._id">
+        <button ion-button (click)="goToChat(user.name)">گفتگو</button>
+      </div>
     </ion-item>
-     <ion-item *ngIf="suser._id!==user._id">
-       <button ion-button (click)="goToChat(user.name)">شروع چت</button>
-     </ion-item>
+
   </div>
 
   <ion-card *ngFor="let post of posts">

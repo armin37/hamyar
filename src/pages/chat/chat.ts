@@ -50,6 +50,7 @@ export class ChatPage {
     return encodeURI(str);
   }
   closeChat(){
+    console.log("clickesd")
     this.navCtrl.pop();
   }
 }

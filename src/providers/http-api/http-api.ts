@@ -27,8 +27,9 @@ export class HttpApiProvider {
     let loading = this.loadingCtrl.create({
       content: ''
     });
-    if(load)
-    loading.present();
+    if(load){
+      loading.present();
+    }
     if(!headers){
       headers=this.headers;
     }
@@ -48,7 +49,7 @@ export class HttpApiProvider {
     }catch (err){
       loading.dismiss();
       console.log(url,body,headers,err)
-      alert("خطا!"+"\r\n"+err['error']['message']);
+      alert("خطا!"+"\r\n"+err['message']);
       return null;
     }
 
@@ -82,7 +83,7 @@ export class HttpApiProvider {
     }catch (err){
       loading.dismiss();
       console.log(url,body,headers,err)
-      alert("خطا!"+"\r\n"+err['error']['message']);
+      alert("خطا!"+"\r\n"+err['message']);
       return null;
     }
 

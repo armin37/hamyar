@@ -59,7 +59,7 @@ export class PersonalPage {
   }
 
   setMentorship=async(type, requested, requester)=>{
-    let res: any = await this.httpApi.sendPostRequest("/mentorship/set", {
+    let res: any = await this.httpApi.sendPostRequest("/mentorship", {
       type, requester, requested
     })
   }

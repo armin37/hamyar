@@ -37,6 +37,7 @@ export class SearchPage {
     console.log(val);
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
+      console.log( val.trim())
       let res: any = await this.httpApi.sendPostRequest("/search",{
         query: val
       },null,false)
