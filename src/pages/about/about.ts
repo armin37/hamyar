@@ -17,7 +17,7 @@ export class AboutPage {
       if (user)
         this.navCtrl.setRoot(TabsPage);
       else
-        this.navCtrl.setRoot(SignupPage);
+        this.navCtrl.setRoot(LoginPage);
     });
   }
 

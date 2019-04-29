@@ -22,10 +22,11 @@ export class HttpApiProvider {
       'Content-Type': 'application/json',
     });
   }
-  sendPostRequest=async(url,body={},headers=null)=>{
+  sendPostRequest=async(url,body={},headers=null,load=true)=>{
     let loading = this.loadingCtrl.create({
       content: ''
     });
+    if(load)
     loading.present();
     if(!headers){
       headers=this.headers;

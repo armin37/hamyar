@@ -24,7 +24,7 @@ export class SearchPage {
   }
 
   ionViewDidLoad() {
-    this.getPostList();
+    // this.getItems()
   }
   private goToPersonal(phoneNumber) {
     this.navCtrl.push(PersonalPage, {
@@ -32,10 +32,17 @@ export class SearchPage {
     });
   }
 
-  getPostList = async () => {
-    let res: any = await this.httpApi.sendPostRequest("/post/list")
-    if (Array.isArray(res)) {
-      this.posts = res;
+  getItems = async (ev:any) => {
+    const val = ev.target.value;
+    console.log(val);
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      let res: any = await this.httpApi.sendPostRequest("/search",{
+        query: val
+      },null,false)
+      if (Array.isArray(res.result[1])) {
+        this.posts = res.result[1];
+      }
     }
   }
 }
