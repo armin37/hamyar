@@ -23,6 +23,7 @@ import {ChatPage} from "../pages/chat/chat";
 import {NewPostPage} from "../pages/new-post/new-post";
 import {MentorsPage} from "../pages/mentors/mentors";
 import {SafePipe} from "../pipes/safe/safe";
+import {Camera,CameraOptions} from "@ionic-native/camera";
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {SafePipe} from "../pipes/safe/safe";
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: 'ApiBaseUrl', useValue: "http://5.152.223.102:3010"},
     HttpApiProvider

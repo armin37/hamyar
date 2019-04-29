@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {VerificationCodePage} from "../verification-code/verification-code";
 import {HttpApiProvider} from "../../providers/http-api/http-api";
 import {TabsPage} from "../tabs/tabs";
+import {Camera,CameraOptions} from "@ionic-native/camera";
 
 /**
  * Generated class for the SignupPage page.
@@ -25,9 +26,12 @@ export class SignupPage {
   role: string = 'کاربر';
   warningMessage: boolean = false;
   messageText: string;
+  private base64Image: any;
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
+    , private camera: Camera
+
     , formBuilder: FormBuilder
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
@@ -66,6 +70,7 @@ export class SignupPage {
     const name: String = this.myForm.value.name;
     const bio: String = this.myForm.value.bio;
     const role: String = this.role === "کاربر" ? "MEMBER" : "DOCTOR";
+    const photo: String = this.base64Image
     const user: any = await this.storage.get('user')
 
     // this.navCtrl.push(VerificationCodePage);
@@ -75,6 +80,7 @@ export class SignupPage {
       phoneNumber: user.phoneNumber,
       name,
       role,
+      photo,
       bio
     })
     if (res) {
@@ -82,5 +88,22 @@ export class SignupPage {
       this.navCtrl.push(TabsPage);
     }
     // }
+  }
+  takePhoto(sourceType:number) {
+    const options: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      sourceType:sourceType,
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // this.imageSrc = 'data:image/jpeg;base64,' + imageData;
+      this.base64Image = /*'data:image/jpeg;base64,' +*/ imageData;
+    }, (err) => {
+      // Handle error
+    });
   }
 }
