@@ -7,13 +7,14 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {LoginPage} from "../pages/login/login";
 import {SignupPage} from "../pages/signup/signup";
 import {IonicStorageModule, Storage} from "@ionic/storage";
+import {AboutPage} from "../pages/about/about";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage: any = LoginPage;
+  rootPage: any = AboutPage;
 
   constructor(
     storage: Storage,
@@ -22,14 +23,11 @@ export class MyApp {
     splashScreen: SplashScreen
   ) {
     platform.ready().then(async () => {
-      let user: any = await storage.get("user")
       platform.setDir('rtl', true);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      if (user)
-        this.rootPage = TabsPage;
     });
   }
 }

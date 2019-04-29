@@ -98,3 +98,22 @@ ion-header:after {
 {
   background: #fb7272!important;
 }
+.message-danger {
+  padding: 5px 10px;
+  background-color: transparent;
+  color: red;
+  direction: rtl;
+  text-align: right;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.margin-b-0
+{
+  margin-bottom: 0!important;
+}
+.ltr-input, .ltr-input input
+{
+  direction: ltr!important;
+  text-align: left!important;
+}
