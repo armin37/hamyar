@@ -10,11 +10,13 @@
     </div>
     <div class="input-with-icon-right">
       <ion-icon name="md-person"></ion-icon>
-      <ion-input class="form-control transparent-input"
-                 maxlength="11"
-                 placeholder="نام"
+      <ion-input class="form-control transparent-input ltr-input"
+                 placeholder="نام کاربری (حروف انگلیسی،اعداد و _)"
                  [formControl]="myForm.controls['name']">
       </ion-input>
+    </div>
+    <div *ngIf="myForm.controls['name'].errors && myForm.controls['name'].dirty" class="message-danger">
+      نام کاربری غیر مجاز
     </div>
 
     <div class="input-with-icon-right">
@@ -25,17 +27,13 @@
       </ion-textarea>
     </div>
 
-    <ion-segment [ngModel]="role" [ngModelOptions]="{standalone:true}" mode="ios" color="primary">
-      <ion-segment-button (click)="segmentChanged('پزشک')" value="پزشک">
-        <ion-label>پزشک</ion-label>
-      </ion-segment-button>
-      <ion-segment-button  (click)="segmentChanged('کاربر')" value="کاربر">
-        <ion-label>کاربر</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
     <button (click)="registerUser()">
       ثبت نام
     </button>
   </form>
+
+  <div *ngIf="warningMessage" class="notification notification-error">
+    <ion-icon name="ios-warning-outline"></ion-icon>
+    <span>{{messageText}}</span>
+  </div>
 </ion-content>

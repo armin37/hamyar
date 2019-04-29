@@ -49,8 +49,7 @@ export class ChatPage {
   encodeURI=(str)=>{
     return encodeURI(str);
   }
-  close(){
-    console.log("clicked")
+  closeChat(){
     this.navCtrl.pop();
   }
 }

@@ -34,17 +34,18 @@ export class SignupPage {
     , private storage: Storage
     , public httpApi: HttpApiProvider
     , public loadingCtrl: LoadingController) {
+    let unamePattern = "^[a-z0-9_-]{3,30}$";
     this.myForm = formBuilder.group({
       'name': ['', Validators.compose([
+        Validators.pattern(unamePattern),
         Validators.required,
-        Validators.minLength(11),
-        Validators.maxLength(11)
+        Validators.minLength(3),
+        Validators.maxLength(30)
       ])
       ],
       'bio': ['', Validators.compose([
         Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(5)
+        Validators.maxLength(100)
       ])
       ]
     });
@@ -61,25 +62,25 @@ export class SignupPage {
     this.role = d;
   }
 
-  registerUser=async()=>{
+  registerUser = async () => {
     const name: String = this.myForm.value.name;
     const bio: String = this.myForm.value.bio;
-    const role:String=this.role==="کاربر"?"MEMBER":"DOCTOR";
-    const user:any=await this.storage.get('user')
+    const role: String = this.role === "کاربر" ? "MEMBER" : "DOCTOR";
+    const user: any = await this.storage.get('user')
 
     // this.navCtrl.push(VerificationCodePage);
     // loading.dismiss();
     // if (phoneNumber != null && phoneNumber.length === 11) {
-      let res=await this.httpApi.sendPostRequest("/signup",{
-        phoneNumber:user.phoneNumber,
-        name,
-        role,
-        bio
-      })
-      if(res){
-      await this.storage.set('user',res)
-        this.navCtrl.push(TabsPage);
-      }
+    let res = await this.httpApi.sendPostRequest("/signup", {
+      phoneNumber: user.phoneNumber,
+      name,
+      role,
+      bio
+    })
+    if (res) {
+      await this.storage.set('user', res)
+      this.navCtrl.push(TabsPage);
+    }
     // }
   }
 }

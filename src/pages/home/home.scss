@@ -18,14 +18,15 @@ page-home {
     width: 100% !important;
     margin: 10px auto !important;
   }
+  ion-fab
+  {
+    bottom: 30px!important;
+    right: 10px!important;
+    z-index: 999999999!important;
+  }
   .new-post {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    z-index: 999999 !important;
+    right: 20px!important;
+    z-index: 99999999 !important;
     background: #ea59ff !important;
     border: none !important;
     ion-icon {
