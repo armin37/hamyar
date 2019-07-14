@@ -3,7 +3,8 @@
         class="ui form absolute-center">
 
     <div class="avatar-wrapper">
-      <img (click)="takePhoto(0)" src="/assets/imgs/user-icon.png">
+      <img (click)="takePhoto(0)" [src]="image" *ngIf="image.length>0">
+      <img *ngIf="image.length<=0" (click)="takePhoto(0)" src="/assets/imgs/user-icon.png">
       <div class="camera-icon">
         <ion-icon name="md-camera"></ion-icon>
       </div>

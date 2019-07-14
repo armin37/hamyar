@@ -20,7 +20,7 @@ import {HttpApiProvider} from "../../providers/http-api/http-api";
 export class NewPostPage {
   myForm: FormGroup;
   text: AbstractControl;
-  image:string;
+  image:string="";
   video:string;
   private base64Image: string="";
   private imageSrc: any=null;
@@ -61,7 +61,7 @@ export class NewPostPage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      // this.imageSrc = 'data:image/jpeg;base64,' + imageData;
+      this.image = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = /*'data:image/jpeg;base64,' +*/ imageData;
     }, (err) => {
       // Handle error

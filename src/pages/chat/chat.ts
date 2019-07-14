@@ -17,7 +17,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 export class ChatPage {
   private user: any={};
   private name: any="";
-  private url="";
+  private url:any;
 
   constructor(
     public navCtrl: NavController,
@@ -30,7 +30,7 @@ export class ChatPage {
   getSafeUrl(url) {
     this.url=url;
     console.log( url)
-    // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
   ionViewDidLoad() {
     this.init();

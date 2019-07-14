@@ -13,17 +13,18 @@
       <h2>{{user.name}}</h2>
       <p>{{user.bio}}</p>
 
-      <button *ngIf="user._id!==suser._id" (click)="setMentorship('FRIENDSHIP',user._id,suser._id)" ion-button>دنبال کردن</button>
       <button  *ngIf="user._id!==suser._id" (click)="setMentorship('MENTORSHIP',user._id,suser._id)" ion-button>حامی من شو</button>
       <button   *ngIf="user._id!==suser._id" (click)="setMentorship('MENTORSHIP',suser._id,user._id)" ion-button>حامیت میشم</button>
       <div *ngIf="suser._id!==user._id">
+        <button *ngIf="user._id!==suser._id" (click)="setMentorship('FRIENDSHIP',user._id,suser._id)" ion-button>دنبال کردن</button>
+
         <button ion-button (click)="goToChat(user.name)">گفتگو</button>
       </div>
     </ion-item>
 
   </div>
 
-  <ion-card *ngFor="let post of posts">
+  <ion-card *ngFor="let post of posts;let pindex = index" >
     <ion-item  (click)="goToPersonal(post.userId.phoneNumber)">
       <ion-avatar item-start>
         <img src="{{post.userId.image}}">
@@ -40,21 +41,23 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
+        <button *ngIf="post.liked.indexOf(user._id)===-1" (click)="like(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart-outline"></ion-icon>
+          <div>{{post.liked.length}}</div>
+        </button>
+        <button *ngIf="post.liked.indexOf(user._id)!==-1" (click)="unlike(post._id,pindex)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="ios-heart"></ion-icon>
           <div>{{post.liked.length}}</div>
         </button>
       </ion-col>
       <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4</div>
+        <button (click)="sharePost(post)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="md-share"></ion-icon>
         </button>
       </ion-col>
       <ion-col class="card-operations" align-self-center text-center>
-        <button ion-button icon-start clear small>
+        <button (click)="repost(post)" ion-button icon-start clear small>
           <ion-icon name="share-alt"></ion-icon>
-          <div>9</div>
         </button>
       </ion-col>
     </ion-row>

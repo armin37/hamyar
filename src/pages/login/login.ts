@@ -12,6 +12,7 @@ import {HttpApiProvider} from "../../providers/http-api/http-api";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+global.loader111=null;
 
 @Component({
   selector: 'page-login',
@@ -30,7 +31,8 @@ export class LoginPage {
     , formBuilder: FormBuilder
     , @Inject('ApiBaseUrl') private apiBaseUrl: string
     , private http: HttpClient
-    , public loadingCtrl: LoadingController) {
+    , public loadingCtrl: LoadingController,
+  ) {
     this.myForm = formBuilder.group({
       'mobile': ['', Validators.compose([
         Validators.required,
@@ -49,15 +51,19 @@ export class LoginPage {
   checkUserMobile=async()=>{
     const phoneNumber: String = this.myForm.value.mobile;
     // this.navCtrl.push(VerificationCodePage);
-    // loading.dismiss();
-    if (phoneNumber != null && phoneNumber.length === 11) {
-      let res=await this.httpApi.sendPostRequest("/login",{phoneNumber})
-      if(res){
+    loader111 = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 30000
+    });
+    loader111.present();
+    // if (phoneNumber != null && phoneNumber.length === 11) {
+    //   let res=await this.httpApi.sendPostRequest("/login",{phoneNumber})
+    //   if(res){
         this.navCtrl.push(VerificationCodePage,{
           phoneNumber
         });
-      }
-    }
+      // }
+    // }
   }
 
   showAlert(header: string, message: string) {

@@ -4,6 +4,8 @@ import {PersonalPage} from "../personal/personal";
 import {Storage} from "@ionic/storage";
 import {HttpApiProvider} from "../../providers/http-api/http-api";
 import {NewPostPage} from "../new-post/new-post";
+import {SocialSharing} from "@ionic-native/social-sharing";
+
 
 
 @Component({
@@ -17,6 +19,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController
     , private storage: Storage
+    , private share: SocialSharing
+
     , public httpApi: HttpApiProvider
     , public modalCtrl: ModalController) {
 
@@ -32,6 +36,15 @@ export class HomePage {
     });
   }
 
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      this.ionViewDidLoad();
+      refresher.complete();
+    }, 2000);
+  }
 
   getPostList = async () => {
     this.user = await this.storage.get("user");
@@ -86,6 +99,9 @@ export class HomePage {
   }
 
   sharePost(post) {
-
+    if(post.file)
+    this.share.share(null, post.content,  null,post.file);
+    else
+    this.share.share(null, post.content, null, null);
   }
 }

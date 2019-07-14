@@ -1,18 +1,20 @@
 <ion-content padding>
   <ion-icon name="md-close" (click)="close()"></ion-icon>
+
+  <img [src]="image" *ngIf="image.length>0">
   <form [formGroup]="myForm"
         class="ui form absolute-center">
-    <div class="input-with-border-bottom">
+    <ion-item class="input-with-border-bottom">
       <ion-textarea rows="6" [formControl]="myForm.controls['text']"
                     placeholder="هر چه می خواهد دل تنگت بگو"
                     class="form-control transparent-input">
       </ion-textarea>
-    </div>
+    </ion-item>
 
     <ion-row>
       <ion-col>
         <button (click)="takePhoto(0)" class="card-operations" ion-button icon-start clear small>
-          <ion-icon  name="image"></ion-icon>
+          <ion-icon name="image"></ion-icon>
         </button>
       </ion-col>
 

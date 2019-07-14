@@ -25,12 +25,20 @@ export class MentorsPage {
     , public httpApi: HttpApiProvider
     , private storage: Storage,
   public navParams: NavParams) {
-    this.getMentors();
   }
 
   ionViewDidLoad() {
+    this.getMentors();
 
     console.log('ionViewDidLoad MentorsPage');
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      this.ionViewDidLoad();
+      refresher.complete();
+    }, 2000);
   }
   private goToPersonal(phoneNumber) {
     this.navCtrl.push(PersonalPage, {

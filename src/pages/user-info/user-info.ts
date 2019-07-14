@@ -5,6 +5,8 @@ import {Storage} from "@ionic/storage";
 import {FormBuilder} from "@angular/forms";
 import {HttpApiProvider} from "../../providers/http-api/http-api";
 import {HttpClient} from "@angular/common/http";
+import {PersonalPage} from "../personal/personal";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 /**
  * Generated class for the UserInfoPage page.
@@ -28,11 +30,26 @@ export class UserInfoPage {
     , private http: HttpClient
     , private storage: Storage,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+     private share: SocialSharing) {
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
+    setTimeout(() => {
+      this.ionViewDidLoad();
+      refresher.complete();
+    }, 2000);
+  }
   ionViewDidLoad() {
     this.init();
+  }
+
+  sharePost(post) {
+    if(post.file)
+      this.share.share(null, post.content,  null,post.file);
+    else
+      this.share.share(null, post.content, null, null);
   }
 
   goToChat(name) {
@@ -56,7 +73,7 @@ export class UserInfoPage {
   changeMentoredStatus=async(event)=>{
     const phoneNumber: any = this.user.phoneNumber;
     const status: any = event.checked?"YES":"NO";
-    await this.httpApi.sendPostRequest("/mentored/"+status, {
+    await this.httpApi.sendPostRequest("/mentoring/"+status, {
       phoneNumber,
     })
   }
@@ -64,8 +81,43 @@ export class UserInfoPage {
   changeMentoringStatus=async(event)=>{
     const phoneNumber: any = this.user.phoneNumber;
     const status: any = event.checked?"YES":"NO";
-    await this.httpApi.sendPostRequest("/mentoring/"+status, {
+    await this.httpApi.sendPostRequest("/mentored/"+status, {
       phoneNumber,
     })
+  }
+  like = async (postId, index) => {
+    const userId: any = this.user._id;
+    let res: any = await this.httpApi.sendPostRequest("/post/like", {
+      userId,
+      postId
+    })
+    if (res) {
+      this.posts[index].liked.push(userId)
+    }
+  }
+  unlike = async (postId, index) => {
+    const userId: any = this.user._id;
+    let res: any = await this.httpApi.sendPostRequest("/post/unlike", {
+      userId,
+      postId
+    })
+    if (res) {
+      let uindex = this.posts[index].liked.indexOf(userId);
+      this.posts[index].liked.splice(uindex, 1)
+    }
+  }
+
+  repost = async (post) => {
+    const userId: any = this.user._id;
+    const postId: any = post._id;
+    await this.httpApi.sendPostRequest("/post/repost", {
+      userId,
+      postId
+    })
+  }
+  private goToPersonal(phoneNumber) {
+    this.navCtrl.push(PersonalPage, {
+      phoneNumber
+    });
   }
 }

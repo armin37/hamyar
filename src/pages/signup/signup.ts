@@ -27,6 +27,7 @@ export class SignupPage {
   warningMessage: boolean = false;
   messageText: string;
   private base64Image: any;
+  image:string="";
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
@@ -100,6 +101,7 @@ export class SignupPage {
 
     this.camera.getPicture(options).then((imageData) => {
       // this.imageSrc = 'data:image/jpeg;base64,' + imageData;
+      this.image = 'data:image/jpeg;base64,' + imageData;
       this.base64Image = /*'data:image/jpeg;base64,' +*/ imageData;
     }, (err) => {
       // Handle error

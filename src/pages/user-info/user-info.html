@@ -1,4 +1,7 @@
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="user" class="personal-info">
     <div class="avatar">
       <ion-avatar item-start>
@@ -24,7 +27,7 @@
       </ion-item>
     </div>
     <ion-item >
-      <button ion-button (click)="goToChat(user.name)">گفتوگوها</button>
+      <button ion-button (click)="goToChat(user.name)">گفت وگوها</button>
     </ion-item>
   </div>
 
@@ -55,15 +58,13 @@
         </button>
       </ion-col>
       <ion-col>
-        <button class="card-operations" ion-button icon-start clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4</div>
+        <button (click)="sharePost(post)" class="card-operations" ion-button icon-start clear small>
+          <ion-icon name="md-share"></ion-icon>
         </button>
       </ion-col>
       <ion-col class="card-operations" align-self-center text-center>
         <button (click)="repost(post)" ion-button icon-start clear small>
           <ion-icon name="share-alt"></ion-icon>
-          <div>9</div>
         </button>
       </ion-col>
     </ion-row>
